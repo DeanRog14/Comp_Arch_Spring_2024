@@ -23,7 +23,29 @@ asm_main:
         enter   0,0               ; setup routine
         pusha
 
-		; TODO: add code
+        ; Positive do eax, 0 and for negative do eax, -1
+
+	; mov eax, -34
+        ; dump_regs 1
+
+        ; ; incorrect extension
+        ; mov eax, 0
+        ; mox al, 0DEH
+        ; call print_int
+        ; call print_nl 
+
+        ; ; correct extension
+        ; mov eax, -1
+        ; mov al, 0DEH
+        ; call print_int
+
+        ; mov eax, -1
+        ; mov ax, 045H
+        ; dump_regs 1
+        ; call print_nl
+
+        ; movzx eax, ax
+        ; dump_regs 2
 
         popa
         mov     eax, 0            ; return back to C
