@@ -29,10 +29,10 @@ asm_main:
 ; code is put in the text segment. Do not modify the code before
 ; or after this comment.
 ;
-		mov ecx, $ + 7
+		mov ecx, $ + 7	; getting us ready for the return address
 		jmp short print_candle
 
-		mov ecx, post_cake
+		mov ecx, post_cake	; this sets us to be ready to return to post_cake
 		jmp short print_cake
 
 post_cake:
@@ -59,26 +59,26 @@ print_candle:
 		call print_string
 		call print_nl
 
-		jmp ecx
+		jmp ecx ; end of program 
 
-print_cake:
+print_cake:	; Subprogram
 		mov eax, cake
 
-		mov ebx, ecx
+		mov ebx, ecx ; saves off the return address
 
 		mov ecx, 3
-print_cake_row:
+print_cake_row:	; For loop inside sub program
 		call print_string
 		call print_nl
 		
 		loop print_cake_row
 
-		mov ecx, ebx
-		jmp ecx
+		mov ecx, ebx	; easy to get a segfault if you dont restore ecx correctly
+		jmp ecx	; end of program
 	
 print_plate:
 		mov eax, plate
 		call print_string
 		call print_nl
 
-		jmp ecx
+		jmp ecx	; end of program

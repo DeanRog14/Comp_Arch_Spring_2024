@@ -37,15 +37,15 @@ asm_main:
         call    print_string
 
         mov     ebx, input1       ; store address of input1 into ebx
-        mov     ecx, ret1         ; store return address into ecx
-        jmp     short get_int     ; read integer
+        mov     ecx, ret1         ; store return address into ecx, ret1 
+        jmp     short get_int     ; read integer, and jump to get_int
 ret1:
-        mov     eax, prompt2      ; print out prompt
+        mov     eax, prompt2      ; print out prompt 
         call    print_string
 
         mov     ebx, input2
         mov     ecx, $ + 7        ; ecx = this address + 7
-        jmp     short get_int
+        jmp     short get_int     ; This means this part is skipped in the address information
 
         mov     eax, [input1]     ; eax = dword at input1
         add     eax, [input2]     ; eax += dword at input2
@@ -80,7 +80,7 @@ ret1:
 ; Notes:
 ;   value of eax is destroyed
 get_int:
-        call    read_int
+        call    read_int           ; eax = inputted number
         mov     [ebx], eax         ; store input into memory
         jmp     ecx                ; jump back to caller
 
